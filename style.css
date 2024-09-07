@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color:aliceblue;
+    font-family: 'Noto Sans Mono', sans-serif ;
+}
+
+header{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('img/betman.jpg') no-repeat
+    center center/cover;
+}
+
+header::before{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: #000;
+    opacity: 0.2;
+}
+
+.nav1{
+    width: 100%;
+    justify-content: end;
+    padding: 30px;
+    padding-bottom: 10px;
+    gap: 30px;
+
+}
+
+.icons{
+    gap: 30px;
+    z-index: 2;
+}
+
+.icons i{
+    color: cornsilk;
+    cursor: pointer;
+}
+
+.icons i:hover{
+    color: var(--main-color);
+}
+
+.lsbtn button{
+    border: none;
+    color: aliceblue;
+    background-color: var(--main-color) ;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    z-index: 2;
+    transition: 0.4s linear;
+    cursor: pointer;
+}
+
+.lsbtn button:nth-child(1){
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-right: 1px solid #999;
+}
+
+.lsbtn button:nth-child(2){
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.lsbtn button:hover{
+    background-color: #fff;
+    color: black;
+}
+
+.mainnav{
+    justify-content: space-between;
+}
+
+.logo{
+    margin-left: -50px;
+    margin-top: -30px;
+    z-index: 2;
+}
+
+.logo h1 a{
+    border: none;
+    font-family: var(--font-family);
+    font-size: 40px;
+    color: #f2965b;
+    transition: 0.4s linear;
+    padding: 8px 16px;
+}
+
+.logo h1 a span{
+    color: var(--main-color);
+   
+}
+.logo h1 a:hover{
+    color: var(--main-color);
+}
+.logo h1 a:hover span{
+    color: #efebea;
+}
+
+.navlist{
+    z-index: 2;
+    margin-top: 10px;   
+}
+
+.navlist ul{
+    gap: 72.2px;
+}
+
+.navlist ul li a{
+    color: #efebea;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.4s linear;
+}
+.navlist ul li .active{
+    color: var(--main-color);
+}
+
+.navlist ul li a i{
+    margin-left: 5px;
+    font-size: 10px;
+}
+.navlist ul li a:hover{
+    color: var(--main-color);
+
+}
+
+.headercont{
+    padding-top: 13rem;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 2;
+}
+.labels{
+    gap: 20px;
+    z-index: 2;
+}
+.labels i{
+    color:coral;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.labels h3{
+    gap: 5px;
+}
+.labels h3 a{
+    font-size: 13px;
+    font-weight: 600;
+    color:#fff
+}
+.labels h3 span{
+    font-weight: 600;
+    color:#fff
+}
+
+.labels h3 a:hover{
+    color: var(--main-color);
+}
+
+.headercont h1{
+    font-family: var(--font-family);
+    z-index: 2;
+    font-size: 4.5vw;
+    font-weight: 800;
+    color: #efebea;
+}
+
+.headercont p{
+    z-index: 2;
+    text-align: center;
+    color: #dbd5d4;
+}
+
+.headbtn{
+    z-index: 2;
+    margin: 60px 0;
+    gap: 50px;
+}
+
+.button{
+    height: 50px;
+    width: 150px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    background-color: transparent;
+    border-bottom: 2px solid var(--main-color);
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.button:hover{
+    box-shadow: 0.5px 0.5px 150px #232323;
+}
+
+.type1::after,
+.type2::after{
+    content: 'CLICK';
+    height: 50px;
+    width: 150px;
+    background-color: var(--main-color);
+    color:#efebea;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(50px);
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-in-out;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.type1::before,
+.type2::before{
+    content: 'Game Details';
+    height: 50px;
+    width: 150px;
+    color: #efebea;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(0px) scale(1);
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .5s ease-in-out;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.type2::before{
+    content: 'Buy now';
+}
+
+.type1:hover::after,
+.type2:hover::after{
+    transform: translateY(0) scale(1.2);
+}
+.type1:hover::before,
+.type2:hover::before{
+    transform: translateY(-50px) scale(0) rotate(180deg);
+}
+
+.dots{
+    z-index: 2;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 13px;
+}
+
+.dot{
+    width: 18px;
+    height: 18px;
+    border-radius: 60%;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: 0.2s linear;
+    cursor: pointer;
+}
+
+.dot:hover{
+    background-color: #fff;
+}
