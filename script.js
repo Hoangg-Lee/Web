@@ -6,9 +6,9 @@ const slider_btn = document.querySelectorAll('.dot');
 
 
 const backing = {
-    fing: 'img/betman.jpg',
-    sing: 'img/tru_bat_toan_ao_ly_.jpg',
-    ting: 'img/Mot_Chut_Fact_logo_chen_vid.png',
+    fing: 'img/test1.png',
+    sing: 'img/test2.jpeg',
+    ting: 'img/test3.webp',
 }
 
 const slider_load = (index) =>  {
