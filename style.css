@@ -293,3 +293,122 @@ header::before{
 .dot:hover{
     background-color: #fff;
 }
+
+/* main start */
+
+.threebox{ 
+    width: 100%;
+    gap: 40px;
+}
+
+.cbox {
+    position: relative;
+    width: 33%;
+    height: 340px;
+    margin-top: 100px;
+}
+
+.cbox img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.cbox::before{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: #fff;
+    opacity: 0.1;
+    object-fit: cover;
+}
+/* 48:43 / 2:35:40 */
+
+.cboxde{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    color: #fff;
+    padding: 50px;
+}
+
+.cboxde h5{
+    color: var(--main-color);
+}
+
+.cboxde h2{
+    font-family: var(--font-family);
+    font-size:  30px;
+}
+
+.cboxde p{
+    font-size: 14px;
+    margin: 20px 0;
+    margin-bottom: 33px;
+    line-height: 23px;
+    color: #f2965b;
+}
+
+.cboxde a{
+    padding: 10px 50px;
+    font-weight: 500;
+    color: var(--main-color);
+    cursor: pointer;
+    position: absolute;
+    background-color: transparent;
+    border-bottom: 2px solid var(--main-color);
+    overflow: hidden;
+    transition: all .5s ease-in-out;
+    z-index: 9;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.cboxde a::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 0%;
+    bottom: 0;
+    left: 0;
+    display: block;
+    background-color: var(--main-color);
+    z-index: -1;
+    transition: .3s;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.cboxde a:hover::before{
+    height: 70%;
+}
+
+.cboxde a:hover{
+    color: black;
+    font-weight: 500;
+}
+
+.filler{
+    justify-content: center;
+    gap: 30px;
+}
+.filler button{
+    margin-top: 100px;
+    padding: 15px 23px;
+    font-size: 15px;
+    font-weight: 600;
+}
