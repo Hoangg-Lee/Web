@@ -598,7 +598,6 @@ header::before{
 
 /* Footer */
 footer{
-    margin-top: 80px;
     width: 100%;
     bottom: 0;
     background: linear-gradient(to right, #4c2113, #dcb485);
