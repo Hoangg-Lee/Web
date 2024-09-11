@@ -1,0 +1,28 @@
+:root{
+    --font-family: 'Titillium Web', sans-serif;
+    --main-color: #a45c23;
+}
+
+.container{
+    max-width: 1200px;
+    margin: auto;
+}
+
+.container2{
+    max-width: 600px;
+    margin: auto;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+}
+
+
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
