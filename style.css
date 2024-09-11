@@ -34,6 +34,13 @@ header::before{
     
 }
 
+.container {
+    display: flex;
+    justify-content: space-between; /* Căn đều các phần trong thanh điều hướng */
+    align-items: center; /* Đảm bảo các phần đều nằm cùng một hàng */
+    padding: 0 20px; 
+}
+
 .nav1{
     width: 100%;
     justify-content: end;
@@ -46,6 +53,9 @@ header::before{
 .icons{
     gap: 30px;
     z-index: 2;
+    flex: 1;                         /* Chiếm không gian còn lại */
+    display: flex;
+    justify-content: flex-end;       /* Đẩy icon sang phải */
 }
 
 .icons i{
@@ -90,8 +100,8 @@ header::before{
 }
 
 .logo{
-    margin-left: -50px;
-    margin-top: -30px;
+    flex: 1; 
+    margin-top: 10px; /* Điều chỉnh giá trị theo ý muốn */
     z-index: 2;
 }
 
@@ -117,7 +127,9 @@ header::before{
 
 .navlist{
     z-index: 2;
-    margin-top: 10px;   
+    display: flex;
+    justify-content: center;          /* Căn giữa nội dung navlist */
+    flex: 2;                          /* Chiếm không gian lớn hơn so với logo */   
 }
 
 .navlist ul{

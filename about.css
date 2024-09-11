@@ -69,6 +69,13 @@ header::before{
     
 }
 
+.container {
+    display: flex;
+    justify-content: space-between;  /* Chia đều các phần tử */
+    align-items: center;             /* Căn giữa theo chiều dọc */
+    padding: 0 20px;                 /* Khoảng cách padding hai bên */
+}
+
 .nav1{
     width: 100%;
     justify-content: end;
@@ -81,6 +88,9 @@ header::before{
 .icons{
     gap: 30px;
     z-index: 2;
+    flex: 1;                         /* Chiếm không gian còn lại */
+    display: flex;
+    justify-content: flex-end;       /* Đẩy icon sang phải */
 }
 
 .icons i{
@@ -125,9 +135,7 @@ header::before{
 }
 
 .logo{
-    margin-left: -50px;
-    margin-top: -30px;
-    z-index: 2;
+    flex: 1; 
 }
 
 .logo h1 a{
@@ -151,12 +159,17 @@ header::before{
 }
 
 .navlist{
-    z-index: 2;
-    margin-top: 10px;   
+    display: flex;
+    justify-content: center;          /* Căn giữa nội dung navlist */
+    flex: 2;                          /* Chiếm không gian lớn hơn so với logo */   
 }
 
 .navlist ul{
-    gap: 72.2px;
+    display: flex;
+    gap: 30px;                        /* Khoảng cách giữa các mục trong danh sách */
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .navlist ul li a{
@@ -617,7 +630,7 @@ header::before{
 
 /* Định dạng cho phần giới thiệu nhóm */
 .about {
-    background-color: #fff; /* Nền trắng */
+    background-color: #efebea; /* Nền trắng */
     border-radius: 10px; /* Bo góc cho phần tử */
     padding: 20px; /* Khoảng cách bên trong */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng nhẹ */
@@ -663,4 +676,67 @@ header::before{
 }
 .team-list li::marker {
     color: black; /* Màu chấm đầu dòng là đen */
+}
+
+/* Footer */
+footer{
+    margin-top: 80px;
+    width: 100%;
+    bottom: 0;
+    background: linear-gradient(to right, #4c2113, #dcb485);
+    color: #e7eef3;
+    padding: 100px 0 30px;
+    border-top-left-radius: 125px;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.row{
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+.col{
+    flex-basis: 25%;
+    padding: 5px;
+}
+
+.logo{
+    width: 80px;
+    margin-bottom: 30px;
+}
+
+.col h3{
+    width: fit-content;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.email-id{
+    width: fit-content;
+    border-bottom: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+ul li{
+    list-style: none;
+    margin-bottom: 12px;
+}
+
+ul li a{
+    text-decoration: none;
+    color:#e7eef3;
+}
+
+.nav2{
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 10px;
+    gap: 20px;
+
 }
