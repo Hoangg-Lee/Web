@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách sinh viên</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <h1>Danh sách sinh viên</h1>
+
+    <form id="student-form">
+        <input type="text" id="name" placeholder="Tên sinh viên" required>
+        <input type="text" id="msv" placeholder="MSV" required>
+        <button type="submit">Thêm sinh viên</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>MSV</th>
+                <th>Ngày 1</th>
+                <th>Ngày 2</th>
+                <th>Ngày 3</th>
+                <th>Ngày 4</th>
+                <th>Ngày 5</th>
+                <th>Ngày 6</th>
+                <th>Ngày 7</th>
+                <th>Ngày 8</th>
+                <th>Ngày 9</th>
+                <th>Ngày 10</th>
+                <th>Ngày 11</th>
+                <th>Ngày 12</th>
+            </tr>
+        </thead>
+        <tbody id="student-list">
+        </tbody>
+    </table>
+
+    <script>
+        const students = [];
+        function updateTable() {
+            const tableBody = document.getElementById('student-list');
+            tableBody.innerHTML = ''; 
+
+            students.forEach((student, studentIndex) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${student.name}</td>
+                    <td>${student.msv}</td>
+                    ${student.days.map((day, dayIndex) => `
+                        <td class="clickable ${day ? 'marked' : ''}" data-student-index="${studentIndex}" data-day-index="${dayIndex}">
+                            ${day}
+                        </td>
+                    `).join('')}
+                `;
+                tableBody.appendChild(row);
+            });
+            document.querySelectorAll('.clickable').forEach(cell => {
+                cell.addEventListener('click', function() {
+                    const studentIndex = this.getAttribute('data-student-index');
+                    const dayIndex = this.getAttribute('data-day-index');
+                    toggleDay(studentIndex, dayIndex, this);
+                });
+            });
+        }
+        function toggleDay(studentIndex, dayIndex, cell) {
+            const student = students[studentIndex];
+            if (student.days[dayIndex]) {
+                student.days[dayIndex] = ''; 
+                cell.classList.remove('marked');
+                cell.innerText = '';
+            } else {
+                student.days[dayIndex] = 'X'; 
+                cell.classList.add('marked');
+                cell.innerText = 'X';
+            }
+        }
+
+        document.getElementById('student-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const name = document.getElementById('name').value;
+            const msv = document.getElementById('msv').value;
+
+            const newStudent = {
+                name: name,
+                msv: msv,
+                days: Array(12).fill('') // 12 ngày trống
+            };
+            students.push(newStudent);
+            updateTable();
+            document.getElementById('student-form').reset();
+        });
+    </script>
+</body>
+</html>

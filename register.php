@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,26 +19,56 @@
         </video>
         <div class="logo">
             <h1>
-                <a href="index.html">Game<span>1</span></a>
+                <a href="">Game<span>1</span></a>
             </h1>
         </div>  
         <div class="signup ">
                 <h1>Sign Up</h1>
-
-                <form >
+                <form method="POST" enctype="multipart/form-data" >
                     <label>Tên</label>
                     <input type="text" name="username" placeholder="Username" required>
-                    <label>Gmail</label>
+                    <label>email</label>
                     <input type="email" name="email" placeholder="Email" required>
                     <label>PassWord</label>
                     <input type="password" name="password" placeholder="Password" required>
                     <input type="submit" value="Register">
+                    <label> 
+                        <?php
+                            include("dbconnect.php");
+                            if ($_SERVER["REQUEST_METHOD"] == "POST"){
+                                $username = $_POST['username'];
+                                $email = $_POST['email'];
+                                $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+                                $checkUser = $conn ->prepare("SELECT * FROM users WHERE  email = ?");
+                                $checkUser->bind_param("s", $email);
+                                $checkUser -> execute();
+                                $result = $checkUser -> get_result();
+
+                                if($result->num_rows > 0){
+                                    echo "email đã được sử dụng";
+                                }
+                                else{
+                                    $stmt = $conn -> prepare("INSERT INTO users (username, email, password) VALUES(?, ?, ?)");
+                                    $stmt -> bind_param("sss",  $username, $email, $password);
+                                    if ( $stmt -> execute() ){
+                                        echo "Đăng ký thành công";
+                                    }
+                                    else{
+                                        echo "error!!!" . $stmt->error;
+                                    }
+                                    $stmt->close();
+                                }     
+                                $checkUser->close();
+                            }
+                            $conn -> close();
+                        ?>
+                    </label>
                 </form>
 
             <p>Chấp nhận điều khoản: <br>
             <a href="">Terms and Condition</a> and <a href="#">Policy Privacy</a>
             </p>
-            <p>Đã có tài khoản <a href="login.html">Đăng nhập</a></p>
+            <p>Đã có tài khoản <a href="login.php">Đăng nhập</a></p>
         </div>    
     </div> 
     </header>

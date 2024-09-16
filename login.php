@@ -20,21 +20,60 @@
         </video>
         <div class="logo">
             <h1>
-                <a href="">Game<span>1</span></a>
+                <a href="index.html">Game<span>1</span></a>
             </h1>
         </div>  
         <div class="login">
             <h1>Sign In</h1>
-
-            <form >
+            <form method="POST" action="">
                 <label>Email</label>
-                <input type="email" name="" required>
+                <input type="email" name="email" placeholder="Email" required>
                 <label>PassWord</label>
-                <input type="text" name="" required>
-                <input type="submit" name="" value="Submit">
+                <input type="password" name="password" placeholder="Mật khẩu" required>
+                <input type="submit" value="Đăng nhập">
+                <label >
+                    <?php
+                    include 'dbconnect.php';
+                    
+                    if ($conn->connect_error) {
+                        die("Kết nối thất bại: " . $conn->connect_error);
+                    }
+                    
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $email = $_POST['email'];
+                        $password = $_POST['password'];
+                    
+                        // Chuẩn bị và thực thi truy vấn kiểm tra xem email có tồn tại không
+                        $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE email = ?");
+                        $stmt->bind_param("s", $email);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                    
+                        if ($result->num_rows > 0) {
+                            $user = $result->fetch_assoc();
+
+                            // Kiểm tra mật khẩu
+                            if (password_verify($password, $user['password'])) {
+
+                                $_SESSION['user_id'] = $user['id'];
+                                $_SESSION['username'] = $user['username'];
+
+                                header("Location: index.html");
+                                exit();
+                            } else {
+                                echo"Không đúng mật khẩu hoặc mật khẩu";
+                            }
+                        } else {
+                            echo"Không tìm thấy email";
+                        }
+                        $stmt->close();
+                    }
+                    $conn->close();
+                    ?>
+                    
             </form>
 
-            <p>Chưa có tài khoản? <a href="signup.html">Đăng ký ngay</a></p>
+            <p>Chưa có tài khoản? <a href="register.php">Đăng ký ngay</a></p>
         </div> 
     </header>
 

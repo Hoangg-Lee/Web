@@ -554,7 +554,7 @@ header::before{
     display: flex;
     margin-top: 12rem;
     width: 100%;
-    height: 85vh;
+    height: 70vh;
     background-color: #e7eef3;
     justify-content: center;
 }
@@ -598,12 +598,13 @@ header::before{
 
 /* Footer */
 footer{
+    margin-top: 0;
     width: 100%;
     bottom: 0;
     background: linear-gradient(to right, #4c2113, #dcb485);
     color: #e7eef3;
     padding: 100px 0 30px;
-    border-top-left-radius: 125px;
+
     font-size: 13px;
     line-height: 20px;
 }
