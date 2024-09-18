@@ -58,7 +58,7 @@
                                 $_SESSION['user_id'] = $user['id'];
                                 $_SESSION['username'] = $user['username'];
 
-                                header("Location: index.html");
+                                header("Location: forum.php");
                                 exit();
                             } else {
                                 echo"Không đúng mật khẩu hoặc mật khẩu";

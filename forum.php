@@ -1,56 +1,61 @@
 <?php
-session_start();
-$conn = new mysqli('localhost', 'root', '', 'forum');
+include 'dbconnect.php';
 
-// Kiểm tra người dùng đã đăng nhập chưa
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
-}
-
-// Xử lý đăng bài mới
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['new_post'])) {
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $game_title = $_POST['game_title'];
-    $user_id = $_SESSION['user_id'];
-
-    $stmt = $conn->prepare("INSERT INTO posts (user_id, title, content, game_title) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("isss", $user_id, $title, $content, $game_title);
-    $stmt->execute();
-    $stmt->close();
-}
-
-// Lấy danh sách các bài viết về game
-$posts = $conn->query("SELECT posts.id, posts.title, posts.game_title, users.username, posts.created_at FROM posts JOIN users ON posts.user_id = users.id ORDER BY posts.created_at DESC");
+// Lấy tất cả các chủ đề từ cơ sở dữ liệu
+$stmt = $conn->query("SELECT topics.id, topics.title, users.username, topics.created_at 
+                     FROM topics 
+                     JOIN users ON topics.user_id = users.id
+                     ORDER BY topics.created_at DESC");
+$topics = $stmt->fetch_all(MYSQLI_ASSOC);
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Game Forum</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="forum.css">
+    <link rel="stylesheet" href="globe.css">
+    <link rel="shortcut icon" href="/code/img/Mot_Chut_Fact_logo_chen_vid.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Diễn đàn Game</title>
 </head>
 <body>
-    <h2>Game Forum</h2>
-    <!-- Form đăng bài mới -->
-    <form action="forum.php" method="POST">
-        <input type="text" name="game_title" placeholder="Game Title" required><br>
-        <input type="text" name="title" placeholder="Post Title" required><br>
-        <textarea name="content" placeholder="Post Content" required></textarea><br>
-        <input type="submit" name="new_post" value="Create Post">
-    </form>
+    <header>
+        <div class="logo">
+            <h1>
+                <a href="index.html">Game<span>1</span></a>
+                <b>Diễn đàn game</b>
+            </h1>   
+        </div> 
+    </header>
 
-    <!-- Danh sách các bài viết về game -->
-    <h3>Recent Posts</h3>
+    
+    <!-- Kiểm tra xem người dùng đã đăng nhập chưa -->
+    <?php if (isset($_SESSION['username'])): ?>
+        <p>Chào mừng, <?= $_SESSION['username'] ?>! <a href="logout.php">Đăng xuất</a></p>
+        
+        <!-- Form tạo chủ đề mới -->
+        <h2>Tạo chủ đề mới</h2>
+        <form action="create_topic.php" method="post">
+            <input type="text" name="title" placeholder="Tiêu đề chủ đề" required><br>
+            <button type="submit">Tạo chủ đề</button>
+        </form>
+    <?php else: ?>
+        <p><a href="login.php">Đăng nhập</a> hoặc <a href="register.php">Đăng ký</a> để tham gia.</p>
+    <?php endif; ?>
+
+    <h2>Danh sách chủ đề</h2>
     <ul>
-        <?php while ($post = $posts->fetch_assoc()): ?>
+        <?php foreach ($topics as $topic): ?>
             <li>
-                <a href="post.php?id=<?php echo $post['id']; ?>"><?php echo htmlspecialchars($post['title']); ?></a>
-                about <?php echo htmlspecialchars($post['game_title']); ?>
-                by <?php echo htmlspecialchars($post['username']); ?> on <?php echo $post['created_at']; ?>
+                <a href="topic.php?id=<?= $topic['id'] ?>"><?= htmlspecialchars($topic['title']) ?></a> 
+                bởi <?= htmlspecialchars($topic['username']) ?> vào <?= $topic['created_at'] ?>
             </li>
-        <?php endwhile; ?>
+        <?php endforeach; ?>
     </ul>
 </body>
 </html>
-<?php $conn->close(); ?>

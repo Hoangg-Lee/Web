@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans Mono', sans-serif 
+}
+
+body{
+    background-color:aliceblue;
+    font-family: 'Noto Sans Mono', sans-serif ;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: #f0f0f0; /* Màu nền, bạn có thể thay đổi */
+}
+
+.logo {
+    flex: 1; 
+    margin-top: 10px;
+    z-index: 2;
+}
+
+.logo h1 a{
+    border: none;
+    font-family: var(--font-family);
+    font-size: 40px;
+    color: #f2965b;
+    transition: 0.4s linear;
+    padding: 8px 16px;
+}
+
+.logo h1 a span{
+    color: var(--main-color);
+   
+}
+.logo h1 a:hover{
+    color: var(--main-color);
+}
+.logo h1 a:hover span{
+    color: #efebea;
+}
+
+.logo b {
+    text-align: center;
+    display: block;
+    font-size: 18px;
+    color: #666;
+    margin-top: 5px;
+}
