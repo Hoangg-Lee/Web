@@ -7,8 +7,16 @@
     font-family: 'Noto Sans Mono', sans-serif 
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+
 body{
-    background-color:aliceblue;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
     font-family: 'Noto Sans Mono', sans-serif ;
 }
 
@@ -53,3 +61,88 @@ header {
     color: #666;
     margin-top: 5px;
 }
+/* Nội dung chính */
+main {
+    
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7); /* Nền trong suốt nhẹ */
+    border-radius: 10px; /* Bo góc nhẹ */
+    color: #fff; /* Màu chữ trắng */
+}
+
+/* Phần chào mừng */
+.welcome-section {
+    margin-bottom: 30px;
+}
+
+.welcome-section p {
+    font-size: 1.2em;
+}
+
+.create-topic-form {
+    margin-top: 20px;
+}
+
+.create-topic-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.create-topic-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.create-topic-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Phần thông báo đăng nhập */
+.login-prompt {
+    text-align: center;
+}
+
+.login-prompt p {
+    font-size: 1.2em;
+}
+
+/* Phần danh sách chủ đề */
+.topics-section {
+    margin-top: 30px;
+}
+
+.topics-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.topics-list {
+    list-style: none;
+    padding: 0;
+}
+
+.topics-list li {
+    margin-bottom: 15px;
+}
+
+.topics-list li a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.topics-list li a:hover {
+    text-decoration: underline;
+}
+

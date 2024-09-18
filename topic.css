@@ -1,0 +1,88 @@
+html, body {
+    height: 100%; /* Đảm bảo cả html và body chiếm toàn bộ chiều cao của trình duyệt */
+    margin: 0; /* Loại bỏ khoảng cách mặc định để không có khoảng trống thừa */
+}
+
+main {
+    display: flex; /* Sử dụng flexbox để căn giữa nội dung */
+    justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+    align-items: center; /* Căn giữa nội dung theo chiều dọc */
+    min-height: 100vh; /* Đảm bảo rằng phần main luôn chiếm ít nhất 100% chiều cao viewport */
+    padding: 20px; /* Thêm khoảng cách bên trong main để nội dung không sát lề */
+    flex: 1; /* Đảm bảo phần main chiếm hết không gian còn lại khi kết hợp với footer */
+}
+
+.content-container {
+    background-color: #fff; /* Màu nền trắng cho khung nội dung */
+    border-radius: 8px; /* Bo góc mềm mại cho khung nội dung */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng nhẹ giúp khung nổi bật */
+    padding: 20px; /* Khoảng cách bên trong khung để nội dung không sát lề */
+    max-width: 800px; /* Đặt giới hạn chiều rộng tối đa để khung không quá rộng */
+    width: 100%; /* Đảm bảo khung nội dung giãn ra vừa với màn hình mà không vượt quá giới hạn */
+}
+
+h6 {
+    font-size: 1.25em; /* Tăng kích thước tiêu đề cho dễ đọc */
+    color: #333; /* Màu xám đậm, dễ nhìn hơn */
+    margin-bottom: 15px; /* Khoảng cách dưới tiêu đề */
+}
+
+form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+textarea {
+    width: 100%; /* Đảm bảo textarea chiếm toàn bộ chiều rộng */
+    padding: 12px; /* Tạo khoảng cách bên trong */
+    border: 1px solid #ccc; /* Viền nhẹ để phân biệt */
+    border-radius: 4px; /* Bo góc cho textarea */
+    font-size: 1em; /* Đặt kích thước phông chữ dễ đọc */
+    resize: vertical; /* Cho phép người dùng thay đổi kích thước theo chiều dọc */
+    margin-bottom: 15px; /* Khoảng cách dưới textarea */
+}
+
+button {
+    background-color: #007bff; /* Màu nền xanh dương */
+    color: #fff; /* Chữ trắng để tương phản */
+    border: none; /* Loại bỏ viền */
+    padding: 10px 20px; /* Tạo khoảng cách bên trong nút */
+    border-radius: 4px; /* Bo góc nút */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+    font-size: 1em; /* Kích thước chữ dễ đọc */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển đổi màu */
+}
+
+button:hover {
+    background-color: #0056b3; /* Thay đổi màu nền khi hover để tạo hiệu ứng tương tác */
+}
+
+ul {
+    list-style: none; /* Loại bỏ ký hiệu chấm đầu dòng của danh sách */
+    padding: 0; /* Loại bỏ khoảng cách thụt lề của danh sách */
+}
+
+
+.content-container li {
+    margin-bottom: 15px; /* Khoảng cách giữa các mục trong danh sách */
+    color: #333; /* Màu chữ đen đậm, dễ đọc */
+    background-color: #f9f9f9; /* Màu nền nhạt để phân biệt các mục */
+    padding: 10px; /* Tạo khoảng cách bên trong các mục */
+    border-radius: 4px; /* Bo góc các mục để trông hiện đại hơn */
+}
+
+.content-container p, li {
+    color: #555; /* Màu chữ xám đậm để dễ nhìn và tránh mỏi mắt */
+}
+
+@media (max-width: 768px) {
+    .content-container {
+        padding: 20px; /* Điều chỉnh khoảng cách cho thiết bị nhỏ hơn */
+        max-width: 100%; /* Đảm bảo khung nội dung không vượt quá màn hình di động */
+    }
+
+    h6 {
+        font-size: 1.15em; /* Giảm kích thước tiêu đề trên thiết bị di động */
+    }
+}
