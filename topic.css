@@ -25,8 +25,9 @@ main {
 
 h6 {
     font-size: 1.25em; /* Kích thước tiêu đề */
-    color: #333; /* Màu xám đậm */
+    color: #7b4b25; /* Màu xám đậm */
     margin-bottom: 15px; /* Khoảng cách dưới tiêu đề */
+    text-align: center; /* Căn giữa nội dung */
 }
 
 form {
@@ -84,6 +85,7 @@ ul {
     }
 
     h6 {
+        text-align: center; /* Căn giữa nội dung */
         font-size: 1.15em; /* Giảm kích thước tiêu đề trên thiết bị di động */
     }
 }
@@ -100,7 +102,7 @@ ul {
     border: 3.5px solid #7b4b25; /* Viền nâu */
     border-radius: 8px; /* Bo góc */
     margin-bottom: 15px; /* Khoảng cách giữa các bài viết */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tạo hiệu ứng 3D */
 }
 
 .post-box p, .post-box a {
@@ -118,6 +120,7 @@ ul {
     text-align: center; /* Căn giữa nội dung */
     margin-bottom: 20px; /* Khoảng cách dưới hộp */
     background-color: #fff6d4; /* Màu nền nhạt */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tạo hiệu ứng 3D */
 }
 .reply-header {
     font-size: 1.25em; /* Kích thước chữ */
@@ -144,4 +147,18 @@ button.submit-button {
 
 button.submit-button:hover {
     background-color: #0056b3; /* Thay đổi màu nền khi hover */
+}
+
+.meta-info {
+    font-family: 'Noto Sans Mono', sans-serif;
+    color: #7f8c8d !important; /* Màu chữ */
+    font-style: italic; /* Nếu bạn muốn chữ nghiêng */
+    font-size: 0.9em;
+}
+
+.post-meta {
+    font-family: 'Noto Sans Mono', sans-serif;
+    color: #7f8c8d !important; /* Màu chữ */
+    font-style: italic; /* Nếu bạn muốn chữ nghiêng */
+    font-size: 0.9em;
 }

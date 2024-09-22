@@ -46,7 +46,7 @@ $posts = $result->fetch_all(MYSQLI_ASSOC);
             <ul class="flex">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="/">Forum</a></li>
+                <li><a href="/">Forums</a></li>
                 <li><a href="/">Games <i class="fa-solid fa-angle-down"></i></a></li>
             </ul>
         </div>
@@ -64,13 +64,16 @@ $posts = $result->fetch_all(MYSQLI_ASSOC);
         <div class="content-container">
         <div class="topic-header">
             <h6><?= htmlspecialchars($topic['title'], ENT_QUOTES, 'UTF-8') ?></h6>
-            <p class="content-text">Chủ đề bởi <?= htmlspecialchars($topic['username'], ENT_QUOTES, 'UTF-8') ?> vào <?= htmlspecialchars($topic['created_at'], ENT_QUOTES, 'UTF-8') ?></p>
+            <p class="content-text meta-info">Chủ đề tạo bởi <?= htmlspecialchars($topic['username'], ENT_QUOTES, 'UTF-8') ?> vào <?= htmlspecialchars($topic['created_at'], ENT_QUOTES, 'UTF-8') ?></p>
         </div>
             <h6>Bài viết</h6>
             <div class="posts-container">
                 <ul>
                     <?php foreach ($posts as $post): ?>
-                        <li class="post-box"><?= htmlspecialchars($post['content'], ENT_QUOTES, 'UTF-8') ?> - bởi <?= htmlspecialchars($post['username'], ENT_QUOTES, 'UTF-8') ?> vào <?= htmlspecialchars($post['post_created_at'], ENT_QUOTES, 'UTF-8') ?></li>
+                        <li class="post-box"> <?= htmlspecialchars($post['content'], ENT_QUOTES, 'UTF-8') ?> <br> 
+    <span class="post-meta">tạo bởi <?= htmlspecialchars($post['username'], ENT_QUOTES, 'UTF-8') ?> vào <?= htmlspecialchars($post['post_created_at'], ENT_QUOTES, 'UTF-8') ?></span>
+</li>
+
                     <?php endforeach; ?>
                 </ul>
             </div>
