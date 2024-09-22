@@ -33,7 +33,13 @@
                 <input type="submit" value="Đăng nhập">
                 <label >
                     <?php
-                    include 'dbconnect.php';
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $dbname = "forum";
+                    $conn = new mysqli('localhost', 'root', '', 'forum');
+
+                    session_start();
                     
                     if ($conn->connect_error) {
                         die("Kết nối thất bại: " . $conn->connect_error);
