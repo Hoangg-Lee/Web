@@ -6,26 +6,20 @@ include 'dbconnect.php';
 session_start();
 
 // Lấy ID chủ đề từ URL, đảm bảo ID là số nguyên
-$topic_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$topic_id = intval($_GET['id'] ?? 0);
 
-// Lấy chi tiết chủ đề từ cơ sở dữ liệu
-$stmt = $conn->prepare("SELECT topics.title, users.username, topics.created_at
-                       FROM topics
-                       JOIN users ON topics.user_id = users.id
-                       WHERE topics.id = ?");
+// Lấy chi tiết chủ đề và bài viết từ cơ sở dữ liệu
+$stmt = $conn->prepare("SELECT topics.title, users.username, topics.created_at,
+                         posts.content, posts.created_at AS post_created_at
+                         FROM topics
+                         JOIN users ON topics.user_id = users.id
+                         LEFT JOIN posts ON posts.topic_id = topics.id
+                         WHERE topics.id = ?");
 $stmt->bind_param("i", $topic_id);
 $stmt->execute();
-$topic = $stmt->get_result()->fetch_assoc();
-
-// Lấy các bài viết trong chủ đề
-$stmt = $conn->prepare("SELECT posts.content, users.username, posts.created_at 
-                       FROM posts 
-                       JOIN users ON posts.user_id = users.id 
-                       WHERE posts.topic_id = ? 
-                       ORDER BY posts.created_at ASC");
-$stmt->bind_param("i", $topic_id);
-$stmt->execute();
-$posts = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$result = $stmt->get_result();
+$topic = $result->fetch_assoc();
+$posts = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -41,42 +35,13 @@ $posts = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        /* CSS để định dạng video nền */
-        .video-background {
-            position: fixed; /* Dùng fixed để video luôn ở phía dưới và không bị cuộn */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Đảm bảo video phủ toàn bộ khung */
-            z-index: -1; /* Đặt video dưới các phần tử khác */
-            pointer-events: none; /* Ngăn video nhận các sự kiện chuột */
-        }
-
-        /* Đảm bảo nội dung nằm trên video */
-        main {
-            position: relative;
-            z-index: 1;
-            color: #fff; /* Màu chữ trắng để nổi bật trên video */
-            padding: 20px;
-        }
-    </style>
 </head>
 <body>
-
-    <!-- Video Background -->
-    <video class="video-background" autoplay muted loop>
-        <source src="img/vid.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
     <!-- Điều hướng -->
     <nav class="container">
         <div class="logo">
             <h1><a href="#">Game<span>1</span></a></h1>
         </div>  
-
         <div class="navlist">
             <ul class="flex">
                 <li><a href="index.html">Home</a></li>
@@ -85,7 +50,6 @@ $posts = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 <li><a href="/">Games <i class="fa-solid fa-angle-down"></i></a></li>
             </ul>
         </div>
-
         <div class="icons flex">
             <i class="fa-solid fa-magnifying-glass"></i>
             <i class="fa-brands fa-facebook"></i>
@@ -97,30 +61,30 @@ $posts = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
     <!-- Nội dung chính -->
     <main>
-    <div class="content-container">
-        <h6><?= htmlspecialchars($topic['title'], ENT_QUOTES, 'UTF-8') ?></h6>
-        <p class="content-text">Chủ đề bởi <?= htmlspecialchars($topic['username'], ENT_QUOTES, 'UTF-8') ?> vào <?= htmlspecialchars($topic['created_at'], ENT_QUOTES, 'UTF-8') ?></p>
+        <div class="content-container">
+        <div class="topic-header">
+            <h6><?= htmlspecialchars($topic['title'], ENT_QUOTES, 'UTF-8') ?></h6>
+            <p class="content-text">Chủ đề bởi <?= htmlspecialchars($topic['username'], ENT_QUOTES, 'UTF-8') ?> vào <?= htmlspecialchars($topic['created_at'], ENT_QUOTES, 'UTF-8') ?></p>
+        </div>
+            <h6>Bài viết</h6>
+            <div class="posts-container">
+                <ul>
+                    <?php foreach ($posts as $post): ?>
+                        <li class="post-box"><?= htmlspecialchars($post['content'], ENT_QUOTES, 'UTF-8') ?> - bởi <?= htmlspecialchars($post['username'], ENT_QUOTES, 'UTF-8') ?> vào <?= htmlspecialchars($post['post_created_at'], ENT_QUOTES, 'UTF-8') ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
 
-        <h6>Bài viết</h6>
-        <ul>
-            <?php foreach ($posts as $post): ?>
-                <li>
-                    <?= htmlspecialchars($post['content'], ENT_QUOTES, 'UTF-8') ?> - bởi <?= htmlspecialchars($post['username'], ENT_QUOTES, 'UTF-8') ?> vào <?= htmlspecialchars($post['created_at'], ENT_QUOTES, 'UTF-8') ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-
-        <?php if (isset($_SESSION['username'])): ?>
-            <!-- Form thêm bài viết mới -->
-            <h6>Trả lời chủ đề</h6>
-            <form action="create_post.php" method="post">
-                <input type="hidden" name="topic_id" value="<?= htmlspecialchars($topic_id, ENT_QUOTES, 'UTF-8') ?>">
-                <textarea name="content" placeholder="Nội dung bài viết" required></textarea><br>
-                <button type="submit">Đăng bài</button>
-            </form>
-        <?php else: ?>
-            <p class="content-text"><a href="login.php">Đăng nhập</a> để trả lời.</p>
-        <?php endif; ?>
+            <?php if (isset($_SESSION['username'])): ?>
+                <h6 class="reply-header">Trả lời chủ đề</h6>
+                <form action="create_post.php" method="post">
+                    <input type="hidden" name="topic_id" value="<?= htmlspecialchars($topic_id, ENT_QUOTES, 'UTF-8') ?>">
+                    <label class="content-label" for="content"></label><textarea name="content" placeholder="Nội dung bài viết" required></textarea></label>
+                    <button type="submit" class="submit-button">Đăng bài</button>
+                </form>
+            <?php else: ?>
+                <p class="content-text"><a href="login.php">Đăng nhập</a> để trả lời.</p>
+            <?php endif; ?>
         </div>
     </main>
 
