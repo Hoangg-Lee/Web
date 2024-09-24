@@ -19,15 +19,33 @@ $topics = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diễn đàn Game</title>
     <link rel="stylesheet" href="forum.css">
-    <link rel="stylesheet" href="globe.css">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="/code/img/Mot_Chut_Fact_logo_chen_vid.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
 </head>
 <body>
-    <div class="logo">
-        <h1><a href="index.html">Game<span>1</span></a></h1>
-    </div>
+    <!-- Điều hướng -->
+    <nav class="container">
+        <div class="logo">
+            <h1><a href="#">Game<span>1</span></a></h1>
+        </div>  
+        <div class="navlist">
+            <ul class="flex">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="forum.php">Forums</a></li>
+                <li><a href="/">Games <i class="fa-solid fa-angle-down"></i></a></li>
+            </ul>
+        </div>
+        <div class="icons flex">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-youtube"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-twitch"></i>
+        </div>
+    </nav>
 
     <main>
         <div class="content-table">
@@ -84,7 +102,7 @@ $topics = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="#">Blogs</a></li>
+                    <li><a href="login.php">Forums</a></li>
                 </ul>
             </div>
             <div class="col">
