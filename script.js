@@ -6,9 +6,9 @@ const slider_btn = document.querySelectorAll('.dot');
 
 
 const backing = {
-    fing: 'img/test1.png',
-    sing: 'img/test2.jpeg',
-    ting: 'img/test3.webp',
+    fing: 'img/gta.jpg',
+    sing: 'img/bogda.png',
+    ting: 'img/genshin.jpg',
 }
 
 const slider_load = (index) =>  {
