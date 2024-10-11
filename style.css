@@ -59,12 +59,19 @@ header::before{
     flex: 1;                         /* Chiếm không gian còn lại */
     display: flex;
     justify-content: flex-end;       /* Đẩy icon sang phải */
+    text-shadow: 0.5px 0.5px 1px rgb(100, 100, 100);
 }
 
+footer .icons i {
+    color: #e7eef3;
+}
+
+
 .icons i{
-    color: cornsilk;
+    color: rgb(0, 0, 0);
     cursor: pointer;
 }
+
 
 .icons i:hover{
     color: var(--main-color);
@@ -125,7 +132,7 @@ header::before{
     color: var(--main-color);
 }
 .logo h1 a:hover span{
-    color: #efebea;
+    color: #000000;
 }
 
 .navlist{
@@ -140,10 +147,11 @@ header::before{
 }
 
 .navlist ul li a{
-    color: #efebea;
+    color: #000000;
     font-size: 15px;
     font-weight: 600;
     transition: 0.4s linear;
+    text-shadow: 0.5px 0.5px 1px rgb(100, 100, 100);
 }
 .navlist ul li .active{
     color: var(--main-color);
@@ -181,6 +189,7 @@ header::before{
     font-size: 13px;
     font-weight: 600;
     color:#fff
+    
 }
 .labels h3 span{
     font-weight: 600;
