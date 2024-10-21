@@ -44,7 +44,7 @@ $posts = $result->fetch_all(MYSQLI_ASSOC);
         </div>  
         <div class="navlist">
             <ul class="flex">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="/">Forums</a></li>
                 <li><a href="/">Games <i class="fa-solid fa-angle-down"></i></a></li>
@@ -108,7 +108,7 @@ $posts = $result->fetch_all(MYSQLI_ASSOC);
             <div class="col">
                 <h3>Links</h3>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="#">Blogs</a></li>
                 </ul>

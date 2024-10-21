@@ -82,8 +82,6 @@
             <p>Chưa có tài khoản? <a href="register.php">Đăng ký ngay</a></p>
         </div> 
     </header>
-
-
     <footer>
         <div class="row">
             <div class="col">

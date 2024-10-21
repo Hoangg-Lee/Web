@@ -32,7 +32,7 @@ $topics = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         </div>  
         <div class="navlist">
             <ul class="flex">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="forum.php">Forums</a></li>
                 <li><a href="/">Games <i class="fa-solid fa-angle-down"></i></a></li>
@@ -69,15 +69,23 @@ $topics = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 <section class="topics-section">
                     <h2>Danh sách chủ đề</h2>
                     <ul class="topics-list">
-                        <?php foreach ($topics as $topic): ?>
-                            <li class="topic-box">
-                                <a href="topic.php?id=<?= htmlspecialchars($topic['id'], ENT_QUOTES, 'UTF-8') ?>">
-                                    <?= htmlspecialchars($topic['title'], ENT_QUOTES, 'UTF-8') ?>
-                                </a>
-                                <br>
-                                <span class="meta-info">bởi <?= htmlspecialchars($topic['username'], ENT_QUOTES, 'UTF-8') ?> vào <?= htmlspecialchars($topic['created_at'], ENT_QUOTES, 'UTF-8') ?></span>
-                            </li>
-                        <?php endforeach; ?>
+                    <?php foreach ($topics as $topic): ?>
+                        <li class="topic-box">
+                            <a href="topic.php?id=<?= htmlspecialchars($topic['id'], ENT_QUOTES, 'UTF-8') ?>">
+                                <?php 
+                                    // Lấy tiêu đề topic
+                                    $title = htmlspecialchars($topic['title'], ENT_QUOTES, 'UTF-8');
+                                    // Kiểm tra độ dài của tiêu đề, nếu vượt quá 50 ký tự thì cắt và thêm dấu ba chấm
+                                    if (mb_strlen($title) > 100) {
+                                        $title = mb_substr($title, 0, 100) . '...';
+                                    }
+                                    echo $title;
+                                ?>
+                            </a>
+                            <br>
+                            <span class="meta-info">bởi <?= htmlspecialchars($topic['username'], ENT_QUOTES, 'UTF-8') ?> vào <?= htmlspecialchars($topic['created_at'], ENT_QUOTES, 'UTF-8') ?></span>
+                        </li>
+                    <?php endforeach; ?>
                     </ul>
                 </section>
             </div>
@@ -100,7 +108,7 @@ $topics = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
             <div class="col">
                 <h3>Links</h3>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="login.php">Forums</a></li>
                 </ul>

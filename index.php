@@ -1,3 +1,27 @@
+<?php
+// Kết nối cơ sở dữ liệu
+include 'dbconnect.php';
+
+// Khởi tạo session
+session_start();
+
+// Lấy ID chủ đề từ URL, đảm bảo ID là số nguyên
+$topic_id = intval($_GET['id'] ?? 0);
+
+// Lấy chi tiết chủ đề và bài viết từ cơ sở dữ liệu
+$stmt = $conn->prepare("SELECT topics.title, users.username, topics.created_at,
+                         posts.content, posts.created_at AS post_created_at
+                         FROM topics
+                         JOIN users ON topics.user_id = users.id
+                         LEFT JOIN posts ON posts.topic_id = topics.id
+                         WHERE topics.id = ?");
+$stmt->bind_param("i", $topic_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$topic = $result->fetch_assoc();
+$posts = $result->fetch_all(MYSQLI_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,10 +46,9 @@
 
             <div class="navlist">
                 <ul class = "flex">
-                    <li> <a href="index.html">Home</a></li>
+                    <li> <a href="index.php">Home</a></li>
                     <li> <a href="about.html">About</a></li>
                     <li> <a href="login.php">Forums</a></li>
-                    <li> <a href="/">Games<i class="fa-solid fa-angle-down"></i></a></li>
                 </ul>
             </div>
 
@@ -72,44 +95,6 @@
     </header>
 
     <main>
-        <div class="threebox flex container">
-            <div class="cbox">
-                <img src="img/2.png" alt = "title">
-                <div class="cboxde">
-                    <h5>All Games</h5>
-                    <h2>Game 1</h2>
-                    <p>Gioi thieu va mo ta Gioi thieu va mo ta Gioi thieu va mo ta Gioi thieu va mo ta Gioi thieu va mo ta Gioi thieu va mo ta </p>
-                    <a href="/" class = "flex">all</a>
-                </div>
-            </div>
-
-            <div class="cbox">
-                <img src="img/1.png" alt = "title">
-                <div class="cboxde">
-                    <h5>All Games</h5>
-                    <h2>Game 1</h2>
-                    <p>Gioi thieu va mo ta Gioi thieu va mo ta Gioi thieu va mo ta Gioi thieu va mo ta Gioi thieu va mo ta Gioi thieu va mo ta</p>
-                    <a href="/">all</a>
-                </div>
-            </div>
-            <div class="cbox">
-                <img src="img/3.png" alt = "title">
-                <div class="cboxde">
-                    <h5>All Games</h5>
-                    <h2>Game 1</h2>
-                    <p>Gioi thieu va mo ta Gioi thieu va mo ta Gioi thieu va mo ta Gioi thieu va mo ta Gioi thieu va mo ta Gioi thieu va mo ta</p>
-                    <a href="/">all</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="filler flex container">
-            <button class ="active">All</button>
-            <button>PS5</button>
-            <button>Xbox One</button>
-            <button>Steam</button>
-        </div>
-
         <div class="gamecards container flex">
             <div class="card">
                 <div class="carding">
@@ -190,55 +175,119 @@
             <div class="container">
                 <h2>blog&nbsp;<span>& news</span></h2>
                 <div class="threecards flex">
+                    <?php
+                        // Truy vấn 3 topic mới nhất từ cơ sở dữ liệu và lấy tên người dùng từ bảng users
+                        $query = "
+                            SELECT topics.title, topics.created_at, users.username, topics.id 
+                            FROM topics 
+                            JOIN users ON topics.user_id = users.id 
+                            ORDER BY topics.created_at DESC 
+                            LIMIT 1";
+                        $result = mysqli_query($conn, $query);
+
+                        if ($result && mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $id = $row['id'];
+                                $title = $row['title'];
+                                $username = $row['username'];
+                                $created_at = $row['created_at'];
+
+                                // Giới hạn tiêu đề trong 20 ký tự
+                                $short_title = (strlen($title) > 50) ? substr($title, 0, 50) . '...' : $title;
+                            }
+                        }        
+                    ?>   
                     <div class="tcards">
                         <img src="img/sherk.jpg" alt="">
                         <div class="tcarddetails">
-                            <h3>Game1</h3>
-                            <p>Gioi thieu va mo ta Gioi thieu va mo ta</p>
+                            <h3><a href="topic.php?id=<?php echo $id; ?>">Cập nhật 1</a></h3>
+                            <p><?php echo $short_title; ?></p>
                             <div class="postby">
                                 <div class="flex">
                                     <i class="fa-solid fa-poo"></i>
-                                    <h5>HoangleCoder</h5>
+                                    <h5><?php echo $username; ?></h5>
                                 </div>
                                 <div class="flex">
                                     <i class="fa-solid fa-clapperboard"></i>
-                                    <h5>Video</h5>
+                                    <h5><?php echo date("d/m/Y", strtotime($created_at)); ?></h5>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?php
+                        // Truy vấn 3 topic mới nhất từ cơ sở dữ liệu và lấy tên người dùng từ bảng users
+                        $query_previous = "
+                            SELECT topics.title, topics.created_at, users.username, topics.id 
+                            FROM topics 
+                            JOIN users ON topics.user_id = users.id 
+                            ORDER BY topics.created_at DESC 
+                            LIMIT 1 OFFSET 1";
+                        $result_previous = mysqli_query($conn, $query_previous);
 
+                        if ($result_previous && mysqli_num_rows($result_previous) > 0) {
+                            while ($row = mysqli_fetch_assoc($result_previous)) {
+                                $id = $row['id'];
+                                $title = $row['title'];
+                                $username = $row['username'];
+                                $created_at = $row['created_at'];
+
+                                // Giới hạn tiêu đề trong 20 ký tự
+                                $short_title = (strlen($title) > 50) ? substr($title, 0, 50) . '...' : $title;
+                            }
+                        }        
+                    ?>
                     <div class="tcards">
                         <img src="img/sherk.jpg" alt="">
                         <div class="tcarddetails">
-                            <h3>Game1</h3>
-                            <p>Gioi thieu va mo ta Gioi thieu va mo ta</p>
+                            <h3><a href="topic.php?id=<?php echo $id; ?>">Cập nhật 2</a></h3>
+                            <p><?php echo $short_title; ?></p>
                             <div class="postby">
                                 <div class="flex">
                                     <i class="fa-solid fa-poo"></i>
-                                    <h5>HoangleCoder</h5>
+                                    <h5><?php echo $username; ?></h5>
                                 </div>
                                 <div class="flex">
                                     <i class="fa-solid fa-clapperboard"></i>
-                                    <h5>Video</h5>
+                                    <h5><?php echo date("d/m/Y", strtotime($created_at)); ?></h5>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?php
+                        // Truy vấn 3 topic mới nhất từ cơ sở dữ liệu và lấy tên người dùng từ bảng users
+                        $query_previous1 = "
+                            SELECT topics.title, topics.created_at, users.username, topics.id  
+                            FROM topics 
+                            JOIN users ON topics.user_id = users.id 
+                            ORDER BY topics.created_at DESC 
+                            LIMIT 1 OFFSET 2";
+                        $result_previous1 = mysqli_query($conn, $query_previous1);
 
+                        if ($result_previous1 && mysqli_num_rows($result_previous1) > 0) {
+                            while ($row = mysqli_fetch_assoc($result_previous1)) {
+                                $id = $row['id'];
+                                $title = $row['title'];
+                                $username = $row['username'];
+                                $created_at = $row['created_at'];
+
+                                // Giới hạn tiêu đề trong 20 ký tự
+                                $short_title = (strlen($title) > 50) ? substr($title, 0, 50) . '...' : $title;
+                            }
+                        }        
+                    ?>
                     <div class="tcards">
                         <img src="img/sherk.jpg" alt="">
                         <div class="tcarddetails">
-                            <h3>Game1</h3>
-                            <p>Gioi thieu va mo ta Gioi thieu va mo ta</p>
+                            <h3><a href="topic.php?id=<?php echo $id; ?>">Cập nhật 3</a></h3>
+                            <p><?php echo $short_title; ?></p>
                             <div class="postby">
                                 <div class="flex">
                                     <i class="fa-solid fa-poo"></i>
-                                    <h5>HoangleCoder</h5>
+                                    <h5><?php echo $username; ?></h5>
                                 </div>
                                 <div class="flex">
                                     <i class="fa-solid fa-clapperboard"></i>
-                                    <h5>Video</h5>
+                                    <h5><?php echo date("d/m/Y", strtotime($created_at)); ?></h5>
                                 </div>
                             </div>
                         </div>
@@ -264,7 +313,7 @@
             <div class="col">
                 <h3>Links</h3>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="">Blogs</a></li>
                 </ul>
