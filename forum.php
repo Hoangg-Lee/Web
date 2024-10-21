@@ -54,6 +54,7 @@ $topics = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                     <?php if (isset($_SESSION['username'])): ?>
                         <div class="welcome-message">
                             <p><?= htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') ?></p>
+                            <a href="profile.php" class="logout-button">profile</a>
                             <a href="logout.php" class="logout-button">Đăng xuất</a>
                         </div>
                         <h2>Tạo chủ đề mới</h2>

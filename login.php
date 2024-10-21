@@ -63,6 +63,7 @@
 
                                 $_SESSION['user_id'] = $user['id'];
                                 $_SESSION['username'] = $user['username'];
+                                $_SESSION['id'] = $user['id'];
 
                                 header("Location: forum.php");
                                 exit();
