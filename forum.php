@@ -28,22 +28,31 @@ $topics = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     <!-- Điều hướng -->
     <nav class="container">
         <div class="logo">
-            <h1><a href="#">Game<span>1</span></a></h1>
+            <h1><a href="index.php">Game<span>1</span></a></h1>
         </div>  
         <div class="navlist">
             <ul class="flex">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="forum.php">Forums</a></li>
-                <li><a href="/">Games <i class="fa-solid fa-angle-down"></i></a></li>
             </ul>
         </div>
         <div class="icons flex">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-youtube"></i>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-twitch"></i>
+        <a href="https://www.google.com" target="_blank">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </a>
+    <a href="https://www.facebook.com" target="_blank">
+        <i class="fa-brands fa-facebook"></i>
+    </a>
+    <a href="https://www.youtube.com" target="_blank">
+        <i class="fa-brands fa-youtube"></i>
+    </a>
+    <a href="https://www.instagram.com" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://www.twitch.tv" target="_blank">
+        <i class="fa-brands fa-twitch"></i>
+    </a>
         </div>
     </nav>
 
@@ -54,7 +63,7 @@ $topics = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                     <?php if (isset($_SESSION['username'])): ?>
                         <div class="welcome-message">
                             <p><?= htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') ?></p>
-                            <a href="profile.php" class="logout-button">profile</a>
+                            <a href="profile.php" class="logout-button">Profile</a>
                             <a href="logout.php" class="logout-button">Đăng xuất</a>
                         </div>
                         <h2>Tạo chủ đề mới</h2>
@@ -118,11 +127,21 @@ $topics = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 <h3>Socials</h3>
                 <div class="nav2 flex">
                     <div class="icons flex">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <i class="fa-brands fa-facebook"></i>
-                        <i class="fa-brands fa-youtube"></i>
-                        <i class="fa-brands fa-instagram"></i>
-                        <i class="fa-brands fa-twitch"></i>
+                    <a href="https://www.google.com" target="_blank">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </a>
+    <a href="https://www.facebook.com" target="_blank">
+        <i class="fa-brands fa-facebook"></i>
+    </a>
+    <a href="https://www.youtube.com" target="_blank">
+        <i class="fa-brands fa-youtube"></i>
+    </a>
+    <a href="https://www.instagram.com" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://www.twitch.tv" target="_blank">
+        <i class="fa-brands fa-twitch"></i>
+    </a>
                     </div>
                 </div>
             </div>

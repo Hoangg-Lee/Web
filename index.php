@@ -53,11 +53,21 @@ $posts = $result->fetch_all(MYSQLI_ASSOC);
             </div>
 
             <div class="icons flex">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-youtube"></i>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-twitch"></i>
+            <a href="https://www.google.com" target="_blank">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </a>
+    <a href="https://www.facebook.com" target="_blank">
+        <i class="fa-brands fa-facebook"></i>
+    </a>
+    <a href="https://www.youtube.com" target="_blank">
+        <i class="fa-brands fa-youtube"></i>
+    </a>
+    <a href="https://www.instagram.com" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://www.twitch.tv" target="_blank">
+        <i class="fa-brands fa-twitch"></i>
+    </a>
             </div>
         </nav>
 
@@ -313,9 +323,9 @@ $posts = $result->fetch_all(MYSQLI_ASSOC);
             <div class="col">
                 <h3>Links</h3>
                 <ul>
-                    <li><a href="">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="">Blogs</a></li>
+                    <li><a href="forum.php">Forums</a></li>
                 </ul>
                 
             </div>
@@ -323,11 +333,21 @@ $posts = $result->fetch_all(MYSQLI_ASSOC);
                 <h3>Socials</h3>
                 <div class="nav2 flex">
                     <div class="icons flex">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-youtube"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-twitch"></i>
+                    <a href="https://www.google.com" target="_blank">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </a>
+    <a href="https://www.facebook.com" target="_blank">
+        <i class="fa-brands fa-facebook"></i>
+    </a>
+    <a href="https://www.youtube.com" target="_blank">
+        <i class="fa-brands fa-youtube"></i>
+    </a>
+    <a href="https://www.instagram.com" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://www.twitch.tv" target="_blank">
+        <i class="fa-brands fa-twitch"></i>
+    </a>
                     </div>
                 </div>
 

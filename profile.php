@@ -79,8 +79,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 <head>
     <title>Thông tin cá nhân</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="globle.css">
 </head>
 <body>
+     <!-- Điều hướng -->
+     <nav class="container">
+        <div class="logo">
+            <h1><a href="#">Game<span>1</span></a></h1>
+        </div>  
+        <div class="navlist">
+            <ul class="flex">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="forum.php">Forums</a></li>
+            </ul>
+        </div>
+        <div class="icons flex">
+        <a href="https://www.google.com" target="_blank">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </a>
+    <a href="https://www.facebook.com" target="_blank">
+        <i class="fa-brands fa-facebook"></i>
+    </a>
+    <a href="https://www.youtube.com" target="_blank">
+        <i class="fa-brands fa-youtube"></i>
+    </a>
+    <a href="https://www.instagram.com" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://www.twitch.tv" target="_blank">
+        <i class="fa-brands fa-twitch"></i>
+    </a>
+        </div>
+    </nav>
     <h1>Thông tin cá nhân của bạn</h1>
 
     <!-- Hiển thị avatar người dùng -->
@@ -116,6 +149,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
 
     <!-- Nút đăng xuất -->
-    <p><a href="logout.php">Đăng xuất</a></p>
+    <p><a href="logout.php" class="logout-btn">Đăng xuất</a></p>
+    <footer>
+        <div class="row">
+            <div class="col">
+                <img src="img/Mot_Chut_Fact_logo_chen_vid.png" alt="Logo" class="logo">
+                <p>Giới thiệu và mô tả nội dung</p>
+            </div>
+            <div class="col">
+                <h3>Địa chỉ:</h3>
+                <p>Nhà thg Hoang</p>
+                <p>Hà Nội</p>
+                <p class="email-id">thitcho@web.com</p>
+                <h4>0123124451</h4>
+            </div>
+            <div class="col">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.php">Forums</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>Socials</h3>
+                <div class="nav2 flex">
+                    <div class="icons flex">
+                    <a href="https://www.google.com" target="_blank">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </a>
+    <a href="https://www.facebook.com" target="_blank">
+        <i class="fa-brands fa-facebook"></i>
+    </a>
+    <a href="https://www.youtube.com" target="_blank">
+        <i class="fa-brands fa-youtube"></i>
+    </a>
+    <a href="https://www.instagram.com" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://www.twitch.tv" target="_blank">
+        <i class="fa-brands fa-twitch"></i>
+    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

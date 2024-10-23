@@ -1,0 +1,147 @@
+/* Đặt phông chữ chung */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #c4fcfb !important;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Định dạng tiêu đề */
+h1 {
+    color: #7b4b25;
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+/* Định dạng cho hình ảnh avatar */
+img {
+    border-radius: 50%;
+    border: 2px solid #3498db;
+    margin: 20px 0;
+}
+
+/* Định dạng thông tin cá nhân */
+p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* Định dạng tiêu đề chỉnh sửa thông tin */
+h2 {
+    font-size: 28px;
+    color: #7b4b25;
+    margin-top: 40px;
+    margin-bottom: 20px; /* Tạo khoảng cách giữa các đoạn văn */
+}
+
+/* Định dạng form */
+form {
+    display: inline-block;
+    text-align: left;
+    margin-top: 20px;
+    padding: 15px;
+    border: 3px solid #7b4b25; /* Viền nâu */
+    border-radius: 5px; /* Bo góc nhẹ */
+    background-color: #fff6d4   ; /* Nền sáng */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hiệu ứng 3D */
+}
+
+/* Định dạng từng trường trong form */
+form div {
+    margin-bottom: 15px;
+}
+
+/* Định dạng nhãn */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Định dạng các trường input và textarea */
+input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Định dạng nút tải ảnh */
+input[type="file"] {
+    padding: 10px;
+}
+
+/* Định dạng nút lưu thay đổi */
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Đổi màu khi rê chuột lên nút */
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Định dạng cho nút đăng xuất */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #e74c3c;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Đổi màu khi rê chuột lên nút đăng xuất */
+a:hover {
+    color: #c0392b;
+}
+
+.logout {
+    text-align: center; /* Căn giữa nội dung */
+    margin: 40px 0;    /* Khoảng cách trên và dưới */
+}
+
+.logout a {
+    border: none;                            /* Không viền */
+    color: white;                            /* Màu chữ trắng */
+    background-color: var(--main-color);    /* Màu nền */
+    font-size: 16px;                         /* Kích thước chữ */
+    font-weight: 600;                        /* Đậm chữ */
+    padding: 10px 20px;                     /* Padding cho nút */
+    border-radius: 5px;                      /* Bo góc cho nút */
+    text-decoration: none;                   /* Bỏ gạch chân */
+    display: inline-block;                   /* Đảm bảo nút có chiều rộng và chiều cao */
+    transition: background-color 0.3s;      /* Hiệu ứng chuyển màu nền */
+}
+
+.logout a:hover {
+    background-color: darkred;               /* Màu nền khi hover */
+}
+
+.logout-btn {
+    display: inline-block;
+    background-color: #ff4b5c; /* Màu nền */
+    color: white; /* Màu chữ */
+    padding: 10px 20px; /* Khoảng cách bên trong */
+    text-align: center; /* Căn giữa văn bản */
+    text-decoration: none; /* Bỏ gạch chân */
+    border-radius: 5px; /* Bo tròn góc */
+    font-size: 16px; /* Kích thước chữ */
+    font-weight: bold; /* Đậm chữ */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển đổi khi hover */
+    margin-bottom: 60px; /* Khoảng cách dưới nút */
+}
+
+.logout-btn:hover {
+    background-color: #ff2a3a; /* Màu nền khi hover */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+}
+
